@@ -34,7 +34,8 @@ package object MatchingProblem
    * **************************************************************************** */
   def matchByElements(n: Int): List[List[Match]] =
   {
-    (for(x <- 1 to n) yield(matchByElement(x, n))).toList
+    //(for(x <- 1 to n) yield(matchByElement(x, n))).toList
+    ((1 to n) map (x => matchByElement(x, n))).toList
   }
 
   /** ****************************************************************************
@@ -54,9 +55,10 @@ package object MatchingProblem
       matchs match
       {
         case Nil => Nil
-        case _ => (matchs.head flatMap (x => matchs.tail flatMap (y => y map (y => List(x, y))))) ::: auxPossibleMatchings(matchs.tail)
+        case _ => (matchs.head flatMap (x => matchs.tail flatMap (y => y map (z => List(x, z))))) ::: auxPossibleMatchings(matchs.tail)
       }
     }
+
     auxPossibleMatchings(allMatches)
   }
 }
