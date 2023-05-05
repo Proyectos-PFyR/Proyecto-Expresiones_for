@@ -20,8 +20,8 @@ package object MatchingProblem
    * **************************************************************************** */
   def matchByElement(i:Int, n:Int): List[Match] =
   {
-    ///(for(x <- 1 to n) yield (i, x)).toList
-    ((1 to n) map (x => (i, x))).toList
+    (for(x <- 1 to n) yield (i, x)).toList
+    //((1 to n) map (x => (i, x))).toList
   }
 
   /** ****************************************************************************
@@ -50,15 +50,37 @@ package object MatchingProblem
 
     val allMatches = matchByElements(n)
 
-    def auxPossibleMatchings(matchs: List[List[Match]]): List[List[Match]] =
+    def auxGenerateMatches(matchs: List[List[Match]]): List[List[Match]] = {
+      allMatches match {
+        case Nil => Nil
+        case a :: b :: tail => auxCombinateMatches((for (x <- a; y <- b) yield List(x, y)), tail)
+      }
+    }
+
+    def auxCombinateMatches(list: List[List[Match]], matchs: List[List[Match]]): List[List[Match]] = {
+      matchs match {
+        case Nil => list
+        case a :: tail => auxCombinateMatches((for (x <- a; y <- list) yield y :+ x), tail)
+      }
+    }
+    auxGenerateMatches(allMatches)
+
+    /*def auxPossibleMatchings(matchs: List[List[Match]]): List[List[Match]] =
     {
       matchs match
       {
         case Nil => Nil
         case _ => (matchs.head flatMap (x => matchs.tail flatMap (y => y map (z => List(x, z))))) ::: auxPossibleMatchings(matchs.tail)
       }
-    }
+    }*/
 
-    auxPossibleMatchings(allMatches)
+    /*def auxPossibleMatchings(matchs: List[List[Match]]): List[List[Match]] =
+    {
+      matchs match
+      {
+        case Nil => Nil
+        case _ => (for (x <- matchs.head; y <- matchs.tail; z <- y) yield List(x,z)) ::: auxPossibleMatchings(matchs.tail)
+      }
+    }*/
   }
 }
