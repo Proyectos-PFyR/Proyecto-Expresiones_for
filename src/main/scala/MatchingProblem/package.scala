@@ -83,4 +83,32 @@ package object MatchingProblem
       }
     }*/
   }
+
+  /** ****************************************************************************
+   * FUNCIÓN:                matchings
+   * DESCRIPCIÓN:            Similar a la función possibleMatchings pero sin valores repetidos
+   * PARÁMETROS DE ENTRADA
+   * $n :                    Numero de copilotos y pilotos.
+   * RETORNO
+   * List[List[Match]] :  	 Todas las posibles combinaciones validas entre parejas de n pilotos con n copilotos.
+   * **************************************************************************** */
+
+  def matchings (n: Int): List[Matching] =
+  {
+    val posiblesMatchs = possibleMatchings(n)
+
+    def pasarLista(matches: List[Matching]): List[Matching] = {
+    matches match {
+      case Nil => Nil
+      case head :: tail => (filterLista(head) :: pasarLista(tail)).filter(!_.isEmpty)
+    }
+  }
+    def filterLista(lista : Matching): Matching = {
+      //println("iteracion")
+      //println(lista)
+      for(x <- lista ; primeras = lista.map(_ ._1) ; segundas = lista.map(_ ._2) if (primeras.toSet.size == lista.size && segundas.toSet.size == lista.size)) yield x
+    }
+    pasarLista(posiblesMatchs)
+  }
+
 }

@@ -26,3 +26,11 @@ possibleMatchings(3)
 possibleMatchings(4)
 possibleMatchings(5)
 possibleMatchings(6)
+
+/******************************************************************************
+ * FUNCIÓN:                matchings
+ ******************************************************************************/
+matchings(2)
+matchings(3)
+matchings(4)
+
