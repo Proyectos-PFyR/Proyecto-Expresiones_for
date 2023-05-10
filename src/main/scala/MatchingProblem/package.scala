@@ -1,5 +1,3 @@
-
-
 package object MatchingProblem
 {
   /** ****************************************************************************
@@ -21,7 +19,6 @@ package object MatchingProblem
   def matchByElement(i:Int, n:Int): List[Match] =
   {
     (for(x <- 1 to n) yield (i, x)).toList
-    //((1 to n) map (x => (i, x))).toList
   }
 
   /** ****************************************************************************
@@ -34,8 +31,7 @@ package object MatchingProblem
    * **************************************************************************** */
   def matchByElements(n: Int): List[List[Match]] =
   {
-    //(for(x <- 1 to n) yield(matchByElement(x, n))).toList
-    ((1 to n) map (x => matchByElement(x, n))).toList
+    (for(x <- 1 to n) yield(matchByElement(x, n))).toList
   }
 
   /** ****************************************************************************
@@ -50,19 +46,12 @@ package object MatchingProblem
 
     val allMatches = matchByElements(n)
 
-    /*def auxGenerateMatches(matchs: List[List[Match]]): List[List[Match]] =
+    def auxCombinateMatches(possibleMatches: List[List[Match]], matches: List[List[Match]]): List[List[Match]] =
     {
-      matchs match {
-        case Nil => Nil
-        case a :: b :: tail => auxCombinateMatches((for (x <- a; y <- b) yield List(x, y)), tail)
-      }
-    }*/
-
-    def auxCombinateMatches(list: List[List[Match]], matchs: List[List[Match]]): List[List[Match]] = {
-      matchs match
+      matches match
       {
-        case Nil => list
-        case a :: tail => auxCombinateMatches((for (x <- a; y <- list) yield y :+ x), tail)
+        case Nil => possibleMatches
+        case a :: tail => auxCombinateMatches((for (x <- a; y <- possibleMatches) yield y :+ x), tail)
       }
     }
 
@@ -70,8 +59,6 @@ package object MatchingProblem
     {
       case a :: b :: tail => auxCombinateMatches((for (x <- a; y <- b) yield List(x, y)), tail)
     }
-
-    //auxGenerateMatches(allMatches)
   }
 
   /** ****************************************************************************
