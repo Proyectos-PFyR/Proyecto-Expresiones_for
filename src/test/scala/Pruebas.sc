@@ -24,8 +24,11 @@ matchByElements(6)
 possibleMatchings(2)
 possibleMatchings(3)
 possibleMatchings(4)
+possibleMatchings(4).length
 possibleMatchings(5)
+possibleMatchings(5).length
 possibleMatchings(6)
+possibleMatchings(6).length
 
 /******************************************************************************
  * FUNCIÓN:                matchings

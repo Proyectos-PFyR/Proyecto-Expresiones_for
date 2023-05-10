@@ -50,64 +50,55 @@ package object MatchingProblem
 
     val allMatches = matchByElements(n)
 
-    def auxGenerateMatches(matchs: List[List[Match]]): List[List[Match]] = {
-      allMatches match {
+    /*def auxGenerateMatches(matchs: List[List[Match]]): List[List[Match]] =
+    {
+      matchs match {
         case Nil => Nil
         case a :: b :: tail => auxCombinateMatches((for (x <- a; y <- b) yield List(x, y)), tail)
       }
-    }
+    }*/
 
     def auxCombinateMatches(list: List[List[Match]], matchs: List[List[Match]]): List[List[Match]] = {
-      matchs match {
+      matchs match
+      {
         case Nil => list
         case a :: tail => auxCombinateMatches((for (x <- a; y <- list) yield y :+ x), tail)
       }
     }
-    auxGenerateMatches(allMatches)
 
-    /*def auxPossibleMatchings(matchs: List[List[Match]]): List[List[Match]] =
+    allMatches match
     {
-      matchs match
-      {
-        case Nil => Nil
-        case _ => (matchs.head flatMap (x => matchs.tail flatMap (y => y map (z => List(x, z))))) ::: auxPossibleMatchings(matchs.tail)
-      }
-    }*/
+      case a :: b :: tail => auxCombinateMatches((for (x <- a; y <- b) yield List(x, y)), tail)
+    }
 
-    /*def auxPossibleMatchings(matchs: List[List[Match]]): List[List[Match]] =
-    {
-      matchs match
-      {
-        case Nil => Nil
-        case _ => (for (x <- matchs.head; y <- matchs.tail; z <- y) yield List(x,z)) ::: auxPossibleMatchings(matchs.tail)
-      }
-    }*/
+    //auxGenerateMatches(allMatches)
   }
 
   /** ****************************************************************************
    * FUNCIÓN:                matchings
-   * DESCRIPCIÓN:            Similar a la función possibleMatchings pero sin valores repetidos
-   * PARÁMETROS DE ENTRADA
-   * $n :                    Numero de copilotos y pilotos.
-   * RETORNO
-   * List[List[Match]] :  	 Todas las posibles combinaciones validas entre parejas de n pilotos con n copilotos.
-   * **************************************************************************** */
+    * DESCRIPCIÓN: Similar a la función possibleMatchings pero sin valores repetidos
+    * PARÁMETROS DE ENTRADA
+      * $n: Numero de copilotos y pilotos.
+    * RETORNO
+      * List
+    [List[Match]
+    ]: Todas las posibles combinaciones validas entre parejas de n pilotos con n copilotos.
+      * **************************************************************************** */
 
-  def matchings (n: Int): List[Matching] =
-  {
+    def matchings(n: Int): List[Matching] = {
     val posiblesMatchs = possibleMatchings(n)
 
     def pasarLista(matches: List[Matching]): List[Matching] = {
-    matches match {
-      case Nil => Nil
-      case head :: tail => (filterLista(head) :: pasarLista(tail)).filter(!_.isEmpty)
+      matches match {
+        case Nil => Nil
+        case head :: tail => (filterLista(head) :: pasarLista(tail)).filter(!_.isEmpty)
+      }
     }
-  }
-    def filterLista(lista : Matching): Matching = {
-      //println("iteracion")
-      //println(lista)
-      for(x <- lista ; primeras = lista.map(_ ._1) ; segundas = lista.map(_ ._2) if (primeras.toSet.size == lista.size && segundas.toSet.size == lista.size)) yield x
+
+    def filterLista(lista: Matching): Matching = {
+      for (x <- lista; segundas = lista.map(_._2) if (segundas.toSet.size == lista.size)) yield x
     }
+
     pasarLista(posiblesMatchs)
   }
 
