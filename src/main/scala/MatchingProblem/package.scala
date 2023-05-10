@@ -102,9 +102,23 @@ package object MatchingProblem
 
 
   */
+
+ /*
   def matchings(n: Int): List[Matching] = {
     def listaValida(matching: Matching): Boolean = {
       val segundas = matching.map(_._2)
+      if (segundas.toSet.size == matching.size) true else false
+    }
+
+    val posiblesMatchs = possibleMatchings(n)
+    for (x <- posiblesMatchs if listaValida(x) && !x.isEmpty) yield x
+  }
+
+
+  */
+  def matchings(n: Int): List[Matching] = {
+    def listaValida(matching: Matching): Boolean = {
+      val segundas = for(x <- matching) yield x._2
       if (segundas.toSet.size == matching.size) true else false
     }
 

@@ -44,12 +44,13 @@ matchings(5)
 /******************************************************************************
  * FUNCIÓN:                weightedMatchings
  ******************************************************************************/
-weightedMatchings(2,pilot,navig)
-weightedMatchings(3,pilot,navig)
-weightedMatchings(4,pilot,navig)
+weightedMatchings(2, pilot, navig)
+weightedMatchings(3, pilot, navig)
+weightedMatchings(4, pilot, navig)
 
 /******************************************************************************
  * FUNCIÓN:                bestMatching
  ******************************************************************************/
-bestMatching(2,pilot,navig)
-bestMatching(4,pilot,navig)
+bestMatching(2, pilot, navig)
+bestMatching(3, pilot, navig)
+bestMatching(4, pilot, navig)
