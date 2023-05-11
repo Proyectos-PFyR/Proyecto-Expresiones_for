@@ -69,40 +69,6 @@ package object MatchingProblem
    * RETORNO
    * List[List[Match]] :  	 Todas las posibles combinaciones validas entre parejas de n pilotos con n copilotos.
    * **************************************************************************** */
- /*
-  def matchings(n: Int): List[Matching] = {
-    val posiblesMatchs = possibleMatchings(n)
-
-    def pasarLista(matches: List[Matching]): List[Matching] = {
-      matches match {
-        case Nil => Nil
-        case head :: tail => (filterLista(head) :: pasarLista(tail)).filter(!_.isEmpty)
-      }
-    }
-
-    def filterLista(lista: Matching): Matching = {
-      for (x <- lista; segundas = lista.map(_._2) if (segundas.toSet.size == lista.size)) yield x
-    }
-
-    pasarLista(posiblesMatchs)
-  }
-
-
-  */
-
- /*
-  def matchings(n: Int): List[Matching] = {
-    def listaValida(matching: Matching): Boolean = {
-      val segundas = matching.map(_._2)
-      if (segundas.toSet.size == matching.size) true else false
-    }
-
-    val posiblesMatchs = possibleMatchings(n)
-    for (x <- posiblesMatchs if listaValida(x) && !x.isEmpty) yield x
-  }
-
-
-  */
   def matchings(n: Int): List[Matching] = {
     def listaValida(matching: Matching): Boolean = {
       val segundas = for(x <- matching) yield x._2
