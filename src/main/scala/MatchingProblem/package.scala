@@ -1,6 +1,12 @@
 package object MatchingProblem
 {
   /** ****************************************************************************
+   * AUTORES
+   * Samuel Galindo Cuevas - 202177491
+   * Nicolas Herrera Marulanda - 202182551
+   * **************************************************************************** */
+
+  /** ****************************************************************************
    * Funciones Entregadas por el profesor.
    * **************************************************************************** */
   type Match = (Int, Int)
@@ -83,9 +89,9 @@ package object MatchingProblem
    * FUNCIÓN:                weightedMatchings
    * DESCRIPCIÓN:            devuelve las tuplas validas con sus respectivo peso
    * PARÁMETROS DE ENTRADA
-   * $n : numero de pilotos y copilotos
-   * $pilotPres: matriz de preferencia de los pilotos
-   * $naviPrefs: matriz de preferencia de los copilotos
+   * $n :                    numero de pilotos y copilotos
+   * $pilotPres:             matriz de preferencia de los pilotos
+   * $naviPrefs:             matriz de preferencia de los copilotos
    * RETORNO
    * List[(Matching, Int)]] : Tuplas validas con su respectivo peso.
    * **************************************************************************** */
@@ -106,13 +112,13 @@ package object MatchingProblem
 
   /** ****************************************************************************
    * FUNCIÓN:                bestMatching
-   * DESCRIPCIÓN:         Función que utiliza las anteriores para devolver la mejor combinacion posible
+   * DESCRIPCIÓN:            Función que utiliza las anteriores para devolver la mejor combinacion posible
    * PARÁMETROS DE ENTRADA
-   * $n : numero de pilotos y copilotos
-   * $pilotPres: matriz de preferencia de los pilotos
-   * $naviPrefs: matriz de preferencia de los copilotos
+   * $n :                   numero de pilotos y copilotos
+   * $pilotPres:          matriz de preferencia de los pilotos
+   * $naviPrefs:            matriz de preferencia de los copilotos
    * RETORNO
-   * (Matching, Int): Tupla de la lista de Matching con su peso
+   * (Matching, Int):     Tupla de la lista de Matching con su peso
    * **************************************************************************** */
   def bestMatching(n: Int, pilotPrefs: Preferences, navigPrefs: Preferences): (Matching, Int) = {
 
@@ -123,5 +129,4 @@ package object MatchingProblem
 
     tuplaMax.head
   }
-
 }
