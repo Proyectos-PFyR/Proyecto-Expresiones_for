@@ -126,7 +126,8 @@ package object MatchingProblem
   def weightedMatchings(n: Int, pilotPrefs: Preferences, navigPrefs: Preferences): List[(Matching, Int)] = {
 
     def generarTupla(matching: Matching): (Matching, Int) = {
-      def generarPeso(lista: Matching): Int = {
+      def generarPeso(lista: Matching): Int =
+      {
         val valorTupla = for (x <- lista; fila = x._1 -1; columna = x._2 - 1 ;pil = pilotPrefs(fila)(columna); nav = navigPrefs(columna)(fila); sol = pil * nav) yield sol
         valorTupla.sum
       }
